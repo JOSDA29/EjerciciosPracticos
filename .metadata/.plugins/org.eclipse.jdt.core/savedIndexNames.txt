@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\josep\OneDrive\Desktop\Documents\Josda\Sena\Cristian David Henao Hoyos\Third Trimester\Ejercicios Practicos\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+348111208.index
+2503372653.index

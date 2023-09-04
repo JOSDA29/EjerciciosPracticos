@@ -1,0 +1,23 @@
+/*Escribe un método con parámetros y con retorno que reciba dos arreglos de enteros del mismo tamaño y 
+ * devuelva un nuevo arreglo que contenga la suma de los elementos de ambos arreglos*/
+
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
+public class SumaArreglos {
+
+	public static void main(String[] args) {
+		int [] arregloA = {1,3,5,7,9}, arregloB = {0,2,4,6,8};
+		int suma = sumaArreglos(arregloA, arregloB);
+		JOptionPane.showMessageDialog(null, "Arreglo A: "+Arrays.toString(arregloA)+"\nArreglo B: "+Arrays.toString(arregloB)+"\nSuma: "+suma ,"INFO" ,JOptionPane.INFORMATION_MESSAGE);
+		
+	}
+	
+	public static int sumaArreglos (int[] arregloA, int[] arregloB) {
+		int sumaElementos = 0;
+		for (int i = 0; i < arregloB.length; i++) {
+			sumaElementos += arregloA[i]+arregloB[i];
+		}
+		return sumaElementos;
+	} 
+}

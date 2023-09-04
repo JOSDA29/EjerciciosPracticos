@@ -1,0 +1,99 @@
+/*Crea un programa que permita a un profesor registrar las notas de sus estudiantes. Utiliza un HashMap
+ *  donde las claves sean los nombres de los estudiantes y los valores sean las notas correspondientes. 
+ *  El programa debe permitir al profesor agregar estudiantes y asignar sus notas, así como también 
+ *  consultar la nota de un estudiante específico.*/
+
+import java.util.ArrayList;
+import java.util.HashMap;	
+import javax.swing.JOptionPane;
+
+public class NotasEstudiantes {
+	static HashMap<String, ArrayList<Double>>notasEstudiantes;
+	static int cantEst;
+	
+	public static void main(String[] args) {
+		notasEstudiantes = new HashMap<String, ArrayList<Double>>();
+		menu();
+	}
+	
+	public static void menu() {
+		String  menu = "!Bienvenido al software de notas¡\n";
+		int cod;
+		boolean validacion=false;
+		menu += "Seleccione una de las opciones:\n";
+		menu += "1. Ingresar estudiante y notas.\n";
+		menu += "2. Consultar un estudiante.\n";
+		menu += "3. Consultar todos los estudiantes\n";
+		menu += "4. Salir";
+		
+		do {
+			cod = Integer.parseInt(JOptionPane.showInputDialog(menu));
+			switch (cod) {
+			case 1:
+				ingresarEstudiantes();
+				break;
+			case 2:
+				consultarEstudiante();
+				break;
+			case 3:
+				imprimirEstudiantes();
+				break;
+			case 4:
+				validacion = true;
+				JOptionPane.showMessageDialog(null, "Gracias por usar el software de notas", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Codigo no valido", "ERROR", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
+		} while (validacion == false);
+	}
+	
+	public static void ingresarEstudiantes() {
+		ArrayList<Double> notas;
+		String nombre;
+		
+			nombre=JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
+			notas=new ArrayList<Double>();
+			double nota;
+			
+			for (int j = 0; j < 3; j++) {
+				nota=Double.parseDouble(JOptionPane.showInputDialog("Ingrese la nota "+(j+1)+" Para "+nombre));
+				notas.add(nota);
+			}
+			notasEstudiantes.put(nombre, notas);
+	}
+	
+	public static void imprimirEstudiantes() {
+		for (HashMap.Entry<String, ArrayList<Double>> entrada : notasEstudiantes.entrySet()) {
+            System.out.println("Estudiante: " + entrada.getKey());
+            System.out.println("Notas: " + entrada.getValue());
+            }
+	}
+		
+	public static void consultarEstudiante() {
+		boolean verificacion = false;
+		while (verificacion == false) {
+			String nombreConsulta=JOptionPane.showInputDialog("Ingrese el nombre del estudiante a consultar");
+			if (notasEstudiantes.containsKey(nombreConsulta)) {
+				verificacion = true;
+				ArrayList<Double> notasTemp = notasEstudiantes.get(nombreConsulta);
+				System.out.println("Nombre: "+nombreConsulta);
+				
+				double suma=0;
+				System.out.println("Lista notas: ");
+				for (int i = 0; i < notasTemp.size(); i++) {
+					System.out.print(notasTemp.get(i)+"-");
+					suma+=notasTemp.get(i);
+				}
+				
+				double promedio=suma/notasTemp.size();
+				System.out.println("\nEl Promedio es: "+promedio);
+			} else {
+				System.out.println("No encuentra el estudiante: "+nombreConsulta);
+			}
+		}
+	}
+	
+
+}

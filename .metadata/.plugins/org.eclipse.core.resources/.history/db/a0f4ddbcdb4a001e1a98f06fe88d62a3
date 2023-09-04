@@ -1,0 +1,70 @@
+/*Crea un programa que permita a un profesor registrar las notas de sus estudiantes. Utiliza un HashMap
+ *  donde las claves sean los nombres de los estudiantes y los valores sean las notas correspondientes. 
+ *  El programa debe permitir al profesor agregar estudiantes y asignar sus notas, así como también 
+ *  consultar la nota de un estudiante específico.*/
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.swing.JOptionPane;
+
+public class NotasEstudiantes {
+	static HashMap<String, ArrayList<Double>>notasEstudiantes;
+	static int cantEst;
+	
+	public void operaciones() {
+		notasEstudiantes = new HashMap<String, ArrayList<Double>>();
+	}
+	
+	public static void main(String[] args) {
+		cantEst=Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de estudiantes a ingresar"));
+		ingresarEstudiantes();
+		imprimirEstudiantes();
+		consultarEstudiante();
+	}
+	
+	public static void ingresarEstudiantes() {
+		ArrayList<Double> notas;
+		String nombre;
+		for (int i = 0; i < cantEst; i++) {
+			nombre=JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
+			notas=new ArrayList<Double>();
+			double nota;
+			for (int j = 0; j < 3; j++) {
+				nota=Double.parseDouble(JOptionPane.showInputDialog("Ingrese la nota "+(j+1)+" Para "+nombre));
+				notas.add(nota);
+			}
+			notasEstudiantes.put(nombre, notas);
+		}
+	}
+	
+	public static void imprimirEstudiantes() {
+		System.out.println(notasEstudiantes);
+	}
+	
+	public static void consultarEstudiante() {
+		boolean verificacion = false;
+		while (verificacion == false) {
+			String nombreConsulta=JOptionPane.showInputDialog("Ingrese el nombre del estudiante a consultar");
+			if (notasEstudiantes.containsKey(nombreConsulta)) {
+				verificacion = true;
+				ArrayList<Double> notasTemp = notasEstudiantes.get(nombreConsulta);
+				System.out.println("Nombre: "+nombreConsulta);
+				
+				double suma=0;
+				System.out.println("Lista notas: ");
+				for (int i = 0; i < notasTemp.size(); i++) {
+					System.out.print(notasTemp.get(i)+"-");
+					suma+=notasTemp.get(i);
+				}
+				
+				double promedio=suma/notasTemp.size();
+				System.out.println("\nEl Promedio es: "+promedio);
+			} else {
+				System.out.println("No encuentra el estudiante: "+nombreConsulta);
+			}
+		}
+	}
+	
+
+}

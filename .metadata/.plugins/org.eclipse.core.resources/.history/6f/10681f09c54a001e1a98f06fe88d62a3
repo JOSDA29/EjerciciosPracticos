@@ -1,0 +1,12 @@
+
+public class NombreCompleto {
+
+	public void main(String[] args) {
+		nombre();
+	}
+	
+	public void nombre() {
+		System.out.print("Mi nombre es: \n Joseph David Quintero Vargas");
+	}
+
+}

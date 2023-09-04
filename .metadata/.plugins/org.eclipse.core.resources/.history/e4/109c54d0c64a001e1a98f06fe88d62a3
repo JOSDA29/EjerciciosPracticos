@@ -1,0 +1,15 @@
+import javax.swing.JOptionPane;
+
+public class NumeroMayorDiez {
+
+	public static void main(String[] args) {
+        int numero = Integer.parseInt(JOptionPane.showInputDialog("Digite cualquier numero entero"));
+        imprimirNumeroMayorDiez(numero);
+    }
+
+    public static void imprimirNumeroMayorDiez(int numero) {
+        if (numero > 10) {
+            System.out.println("El número " + numero + " es mayor que 10");
+        }
+    }
+}

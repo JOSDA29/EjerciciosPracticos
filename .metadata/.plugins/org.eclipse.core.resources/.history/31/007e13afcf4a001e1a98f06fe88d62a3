@@ -1,0 +1,33 @@
+/*Realice un algoritmo que use un Método con parámetros y con retorno que recibe un ArrayList
+ *  de enteros y devuelve el valor máximo de la lista*/
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class NumeroMayorArrayList {
+
+	static int cantElementos;
+	public static void main(String[] args) {
+		ArrayList<Integer> arreglo = new ArrayList<Integer>();
+		int numeroMayor, elemento;
+		
+		cantElementos = Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de elementos a ingresar del ArrayList"));
+		for (int i = 0; i < cantElementos; i++) {
+			elemento = Integer.parseInt(JOptionPane.showInputDialog("Digite el elemento numero "+(i+1)+"del ArrayList"));
+			arreglo.add(elemento);
+		}
+		numeroMayor = numeroMayor(arreglo);
+		JOptionPane.showMessageDialog(null, "Arreglo: "+arreglo+"\nNumero mayor: "+numeroMayor ,"INFO" ,JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public static int numeroMayor(ArrayList<Integer> arreglo){
+		int mayor= arreglo.get(0);
+		for (int i = 0; i < cantElementos; i++) {
+			if (arreglo.get(i)>mayor) {
+				mayor= arreglo.get(i);
+			}
+		}
+		return mayor;
+	}
+
+}
